@@ -1,4 +1,4 @@
-import SideNav from "@/components/dashboard/sidenav";
+import SideNav from "@/components/dashboard/sidenav/sidenav";
 import React from "react";
 
 // import { Metadata } from 'next';

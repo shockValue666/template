@@ -1,31 +1,15 @@
 import React from 'react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
-import { LayoutDashboardIcon, LogOutIcon, PackageIcon, SettingsIcon, ShoppingCartIcon, StarIcon, UsersIcon } from 'lucide-react'
-import { ScrollArea } from '../ui/scroll-area'
-import { Avatar } from '../ui/avatar'
+import { Icon, LayoutDashboardIcon, LogOutIcon, LucideProps, PackageIcon, SettingsIcon, ShoppingCartIcon, StarIcon, UsersIcon } from 'lucide-react'
 import Link from 'next/link'
+import MobileSideNav from './mobile-sidenav'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { Button } from '@/components/ui/button'
+import { Avatar } from '@/components/ui/avatar'
+import ToggleButton from '@/components/globals/toggle-button'
 
-
-const MobileSideNav = () => {
+const DesktopNavBar = () => {
   return (
-    <Sheet>
-        <SheetTrigger asChild>
-            <Button variant="outline">Open</Button>
-        </SheetTrigger>
-        <SheetContent className='w-[60%]' side="left">
-            <div className='flex h-full  flex-col'>
+     <div className='hidden md:flex h-screen w-60 flex-col border-r bg-muted/40'>
                 <div className='p-6'>
                     <h2 className='flex items-center text-2xl font-semibold'>
                         <StarIcon className='mr-2 h-6 w-6'/>
@@ -34,7 +18,7 @@ const MobileSideNav = () => {
                 </div>
 
                 <ScrollArea className='flex-1'>
-                    <nav className='flex flex-col gap-2 p-2'>
+                    <nav className='flex flex-col gap-2 p-4'>
                         <NavItem href="/dashboard">
                             <LayoutDashboardIcon className="mr-2 h-4 w-4"/>
                             Dashboard
@@ -58,8 +42,12 @@ const MobileSideNav = () => {
                     </nav>
                 </ScrollArea>
 
-                <div className='mt-auto '>
-                    <div className='flex items-center gap-4 rounded-lg bg-muted p-2'>
+                <div className='w-full text-center'>
+                    <ToggleButton className="ml-1 border-4 border-border"/>
+                </div>
+
+                <div className='mt-auto p-4 flex flex-col gap-y-8'>
+                    <div className='flex items-center gap-4 rounded-lg bg-muted p-4'>
                         <Avatar />
                         <div className='flex flex-col'>
                             <span className='text-sm font-medium'>John Doe</span>
@@ -73,13 +61,12 @@ const MobileSideNav = () => {
                         </Link>
                     </Button>
                 </div>
-            </div>
-        </SheetContent>
-    </Sheet>
+        </div>
   )
 }
 
-export default MobileSideNav
+export default DesktopNavBar
+
 
 function NavItem({ href, children }:{href:string, children:React.ReactNode}) {
   return (
