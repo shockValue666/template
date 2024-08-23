@@ -1,8 +1,9 @@
 "use client";
-import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
+import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from '@tanstack/react-table'
 import React, { useEffect, useState } from 'react'
 import { Payment } from './columns'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table'
+import { Button } from '../ui/button';
 
 interface Props{
   columns: ColumnDef<Payment>[],
@@ -23,6 +24,7 @@ const DataTable = <TData,TValue>({
     data,
     columns,
     getCoreRowModel:getCoreRowModel(),
+    getPaginationRowModel:getPaginationRowModel()
   })
   useEffect(()=>{
     isMounted(true)
@@ -32,55 +34,65 @@ const DataTable = <TData,TValue>({
   if(!mounted) return (<div>no</div>)
 
   return (
-    <div className='rounded-md border'>
-      <Table>
-        <TableHeader>
-          {table.getHeaderGroups().map(header=>(
-            <TableRow key={header.id}>
-              {header.headers.map(_header=>{
-                return (
-                  <TableHead key={_header.id}>
-                    {
-                      _header.isPlaceholder ? null : 
-                        flexRender(
-                          _header.column.columnDef.header,
-                          _header.getContext()
-                        )
-                    }
-                  </TableHead>
-                )
-              })}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-          {/* <tr>body</tr> */}
-          {
-            table.getRowModel().rows?.length ? 
-            (
-              // <div>
-                  table.getRowModel().rows.map(row=>(
-                    <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
-                      {row.getVisibleCells().map(cell=>(
-                        <TableCell key={cell.id}>
-                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  ))
-              // </div>
-            )
-            :
-            (
-              <TableRow>
-                <TableCell colSpan={columns.length} className='h-24 text-center'>
-                    No results
-                </TableCell>
+    <div>
+      <div className='rounded-md border'>
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map(header=>(
+              <TableRow key={header.id}>
+                {header.headers.map(_header=>{
+                  return (
+                    <TableHead key={_header.id}>
+                      {
+                        _header.isPlaceholder ? null : 
+                          flexRender(
+                            _header.column.columnDef.header,
+                            _header.getContext()
+                          )
+                      }
+                    </TableHead>
+                  )
+                })}
               </TableRow>
-            )
-          }
-        </TableBody>
-      </Table>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {/* <tr>body</tr> */}
+            {
+              table.getRowModel().rows?.length ? 
+              (
+                // <div>
+                    table.getRowModel().rows.map(row=>(
+                      <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                        {row.getVisibleCells().map(cell=>(
+                          <TableCell key={cell.id}>
+                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    ))
+                // </div>
+              )
+              :
+              (
+                <TableRow>
+                  <TableCell colSpan={columns.length} className='h-24 text-center'>
+                      No results
+                  </TableCell>
+                </TableRow>
+              )
+            }
+          </TableBody>
+        </Table>
+      </div>
+      <div className='flex items-center justify-end space-x-2 py-4'>
+            <Button variant='outline' size="sm" onClick={()=>table.previousPage()} disabled={!table.getCanPreviousPage()}>
+              Previous
+            </Button>
+            <Button variant="outline" size="sm" onClick={()=>table.nextPage()} disabled={!table.getCanNextPage()}>
+              Next
+            </Button>
+      </div>
     </div>
   )
 }
