@@ -61,20 +61,19 @@ export const fetchFilteredInvoices = async (query:string, currentPage:number) =>
 }
 
 export const fetchNumberOfInvoices = async (numberOfInvoices:number) => {
-    console.log("number of invoices: ",numberOfInvoices)
     try {
-        // const invoices = await client.invoice.findMany({
-        //     orderBy:{
-        //         issuedAt:"desc"
-        //     },
-        //     take:numberOfInvoices,
-        //     skip:0,
-        //     include:{
-        //         user:true
-        //     }
-        // })
-        // console.log("invoices: ",invoices)
-        // return invoices;
+        const invoices = await client.invoice.findMany({
+            orderBy:{
+                issuedAt:"desc"
+            },
+            take:numberOfInvoices,
+            skip:0,
+            include:{
+                user:true
+            }
+        })
+        console.log("invoices: ",invoices)
+        return invoices;
     } catch (error) {
         console.log("error fetching invoices: ",error)
     }
