@@ -1,10 +1,10 @@
 import DashboardMain from '@/components/dashboard/dashboard-main'
 import React from 'react'
 
-const Page = () => {
+const Page = ({searchParams}:{searchParams:{page:number,query:string}}) => {
   return (
     <div>
-      <DashboardMain/>
+      <DashboardMain page={searchParams.page} query={searchParams.query}/>
     </div>
   )
 }

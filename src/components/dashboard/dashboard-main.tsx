@@ -2,6 +2,7 @@ import React from 'react'
 import Stats from './stats'
 import Subscriptions from './subscriptions'
 import SignUps from './signups'
+import InvoicesTable from './invoices-matrix/page'
 
 const DashboardMain = () => {
   return (
@@ -18,7 +19,9 @@ const DashboardMain = () => {
         <div className=''>
             <SignUps/>
         </div>
-        DashboardMain
+        <div>
+            <InvoicesTable/>
+        </div>
     </div>
   )
 }

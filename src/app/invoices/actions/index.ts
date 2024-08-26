@@ -4,6 +4,7 @@ import { client } from "@/lib/prisma";
 const ITEMS_PER_PAGE = 6;
 
 export const fetchFilteredInvoices = async (query:string, currentPage:number) => {
+    console.log("query: ",query)
     try {
         const invoices = await client.invoice.findMany({
             where:{
@@ -13,6 +14,8 @@ export const fetchFilteredInvoices = async (query:string, currentPage:number) =>
                             contains:query,
                             mode:"insensitive"
                         },
+                    },
+                    {
                         user:{
                             OR:[
                                 {
@@ -50,11 +53,47 @@ export const fetchFilteredInvoices = async (query:string, currentPage:number) =>
                 issuedAt:"desc"
             },
             take:ITEMS_PER_PAGE,
-            skip:currentPage*ITEMS_PER_PAGE,
+            skip:currentPage===1 ? 0 : (currentPage-1)*ITEMS_PER_PAGE,
             
             
         })
-        return invoices;
+
+        const totalCount = await client.invoice.count({
+            where: {
+                OR: [
+                    {
+                        status: {
+                            contains: query,
+                            mode: "insensitive",
+                        },
+                    },
+                    {
+                        user: {
+                            OR: [
+                                {
+                                    email: {
+                                        contains: query,
+                                        mode: "insensitive",
+                                    },
+                                },
+                                {
+                                    name: {
+                                        contains: query,
+                                        mode: "insensitive",
+                                    },
+                                },
+                            ],
+                        },
+                    },
+                ],
+            },
+        });
+        if(invoices && totalCount){
+            console.log("found invoices: ",invoices, totalCount)
+            return {invoices,totalCount};
+        }else{
+            console.log("no invoices found: ",invoices)
+        }
     } catch (error) {
         console.log("error fetching invoices: ",error)
     }

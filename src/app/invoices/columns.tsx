@@ -17,7 +17,11 @@ export type Invoice = {
     id:string,
     status:string
     paidAt:Date | null,
-    userId:string,
+    user:{
+        name:string | null,
+        email:string,
+        id:string
+    },
     // user:{name:string, email:string}
 }
 
@@ -103,7 +107,7 @@ export const columns:ColumnDef<Invoice>[] = [
     }
     ,
     {
-        accessorKey:"userId",
+        accessorKey:"user.id",
         header:"userId",
     }
     ,
