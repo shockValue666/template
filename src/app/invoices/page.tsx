@@ -1,3 +1,4 @@
+"use server"
 import React from 'react'
 import { columns } from './columns'
 import DataTable from './data-table'

@@ -1,3 +1,4 @@
+"use server"
 import React from 'react'
 import Search from './search'
 import ServerMatrix from './server-matrix'
