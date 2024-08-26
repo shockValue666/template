@@ -66,11 +66,11 @@ export const fetchNumberOfInvoices = async (numberOfInvoices:number) => {
             orderBy:{
                 issuedAt:"desc"
             },
-            // take:numberOfInvoices,
-            // skip:0,
-            // include:{
-            //     user:true
-            // }
+            take:numberOfInvoices,
+            skip:0,
+            include:{
+                user:true
+            }
         })
         console.log("invoices: ",invoices)
         return invoices;
