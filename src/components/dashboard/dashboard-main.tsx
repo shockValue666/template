@@ -4,6 +4,11 @@ import Subscriptions from './subscriptions'
 import SignUps from './signups'
 import InvoicesTable from './invoices-matrix/page'
 
+interface Props{
+  page:number,
+  query:string
+}
+
 const DashboardMain = () => {
   return (
     <div className='grid gap-x-4 gap-y-8 md:grid-cols-2 grid-rows-auto md:grid-rows-[auto,auto]'>
@@ -20,7 +25,7 @@ const DashboardMain = () => {
             <SignUps/>
         </div>
         <div>
-            <InvoicesTable/>
+            {/* <InvoicesTable searchParams={{page,query}}/> */}
         </div>
     </div>
   )
