@@ -1,6 +1,11 @@
 import React from 'react'
 
-const Page = () => {
+const Page = ({searchParams}:{
+    searchParams:{
+        query:string,
+        page:number
+    }
+}) => {
   return (
     <div>Page</div>
   )

@@ -51,3 +51,16 @@ model Subscription {
   expiresAt DateTime?
   isActive  Boolean   @default(true)
 }
+
+model TestUsers {
+  name     String
+  id       String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email    String
+  password String
+}
+
+model SessionData {
+  id        String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId    String
+  expiresAt String
+}

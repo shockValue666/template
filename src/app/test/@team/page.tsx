@@ -5,15 +5,7 @@ import DataTable from './data-table'
 import { fetchFilteredInvoices, fetchNumberOfInvoices } from './actions'
 import Search from './search'
 import PaginationButtons from './pagination-buttons'
-const getData = async () => {
 
-    return [{
-        id: "728ed52f",
-        amount: 100,
-        status: "pending" as const,
-        email: "m@example.com",
-    }]
-}
 const Page = async ({searchParams}:{searchParams:{
   page?:string,
   query?:string
@@ -28,17 +20,26 @@ const Page = async ({searchParams}:{searchParams:{
   console.log("new data: ",newdData)
     
   return (
-    <div>
-        <p>some component that is supposed to remain static</p>
-        <Search/>
-        {newdData ? 
-        (
-          <>
+    <div className='w-full h-full flex flex-col justify-center items-center p-2 box-border'>
+      <p className='mb-4'>some component that is supposed to remain static</p>
+      <Search 
+      // className='mb-4 w-full max-w-md' 
+      />
+      {newdData ? 
+      (
+        <>
+          <div className='w-full max-w-full overflow-auto'>
             <DataTable data={newdData.invoices} columns={columns} />
-            <PaginationButtons firstDisabled={currentPage === 1 } lastDisabled={newdData.invoices.length < 6 || newdData.totalCount === currentPage*6}/>
-          </>
-        ) : (<div className='text-center my-12'>No data</div>)}
-      
+          </div>
+          <PaginationButtons 
+            firstDisabled={currentPage === 1 } 
+            lastDisabled={newdData.invoices.length < 6 || newdData.totalCount === currentPage * 6}
+            // className='mt-4 w-full max-w-md'
+          />
+        </>
+      ) : (
+        <div className='text-center my-12'>No data</div>
+      )}
     </div>
   )
 
