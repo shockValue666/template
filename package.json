@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@auth/supabase-adapter": "^1.4.2",
+    "@clerk/nextjs": "^5.3.7",
+    "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^3.9.0",
     "@next-auth/supabase-adapter": "^0.2.1",
     "@prisma/client": "^5.18.0",

@@ -17,18 +17,15 @@ const Page = async ({searchParams}:{searchParams:{
   console.log("currentPage: ",currentPage)
   console.log("query: ",query)
   const newdData = await fetchFilteredInvoices(query, currentPage)
-  console.log("new data: ",newdData)
     
   return (
     <div className='w-full h-full flex flex-col justify-center items-center p-2 box-border'>
-      <p className='mb-4'>some component that is supposed to remain static</p>
-      <Search 
-      // className='mb-4 w-full max-w-md' 
-      />
+      {/* <p className='mb-4'>some component that is supposed to remain static</p> */}
+      <Search />
       {newdData ? 
       (
         <>
-          <div className='w-full max-w-full overflow-auto'>
+          <div className='w-full max-w-full overflow-auto mt-4'>
             <DataTable data={newdData.invoices} columns={columns} />
           </div>
           <PaginationButtons 

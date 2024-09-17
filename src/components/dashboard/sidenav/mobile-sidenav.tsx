@@ -18,9 +18,15 @@ import Link from 'next/link'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Avatar } from '@/components/ui/avatar'
 import ToggleButton from '@/components/globals/toggle-button'
+import { Profile } from '@prisma/client'
 
 
-const MobileSideNav = () => {
+
+interface Props {
+    user: Partial<Profile> | null | undefined
+}
+
+const MobileSideNav:React.FC<Props> = ({user}) => {
   return (
     <div className='block md:hidden'>
         <Sheet>
@@ -66,13 +72,15 @@ const MobileSideNav = () => {
                     </div>
 
                     <div className='mt-auto '>
+                        {user && user.email && 
                         <div className='flex items-center gap-4 rounded-lg bg-muted p-2'>
                             <Avatar />
                             <div className='flex flex-col'>
-                                <span className='text-sm font-medium'>John Doe</span>
-                                <span className='text-xs text-muted-foreground'>john@example.com</span>
+                                <span className='text-sm font-medium'>{user.email.split("@")[0]}</span>
+                                <span className='text-xs text-muted-foreground break-all'>{user.email}</span>
                             </div>
                         </div>
+                        }
                         <Button variant={"ghost"} className='w-full justify-start mt-4'>
                             <Link href="/logout" prefetch={false}>
                             <LogOutIcon/>

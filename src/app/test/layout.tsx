@@ -6,23 +6,6 @@ import React from 'react'
 
 const Layout = ({children,analytics, team}:{children:React.ReactNode, analytics:React.ReactNode, team:React.ReactNode}) => {
   return (
-    // <div className='h-screen flex flex-col gap-y-12'>
-    //   <div>
-    //     {children}
-    //   </div>
-    //   <div className="grid grid-cols-2 gap-4 h-1/2 w-full">
-    //     <div className='border-4 border-white flex justify-center items-center overflow-hidden h-full'>
-    //       <div className='max-w-full max-h-full w-full h-full flex justify-center items-center'>
-    //         {team}
-    //       </div>
-    //     </div>
-    //     <div className='border-4 border-red-500 overflow-hidden flex justify-center items-center h-full'>
-    //       <div className='max-w-full max-h-full w-full h-full flex justify-center items-center'>
-    //         {analytics}
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
     <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
         <div className="w-full flex-none md:w-64">
             <SideNav/>

@@ -89,7 +89,7 @@ export const fetchFilteredInvoices = async (query:string, currentPage:number) =>
             },
         });
         if(invoices && totalCount){
-            console.log("found invoices: ",invoices, totalCount)
+            // console.log("found invoices: ",invoices, totalCount)
             return {invoices,totalCount};
         }else{
             console.log("no invoices found: ",invoices)

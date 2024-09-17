@@ -1,13 +1,17 @@
+"use server"
 import React from 'react'
 import MobileSideNav from './mobile-sidenav'
 import DesktopNavBar from './desktop-navbar'
+import { onGetCurrentUser } from '@/actions/get-user'
 
-const SideNav = () => {
+const SideNav = async () => {
+
+  const user = await onGetCurrentUser()
   return (
     <>
-        <MobileSideNav/>
+        <MobileSideNav user={user?.user}/>
 
-        <DesktopNavBar/>
+        <DesktopNavBar user={user?.user}/>
     </>
   )
 }

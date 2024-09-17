@@ -1,3 +1,4 @@
+"use client";
 import React from 'react'
 import { Icon, LayoutDashboardIcon, LogOutIcon, LucideProps, PackageIcon, SettingsIcon, ShoppingCartIcon, StarIcon, UsersIcon } from 'lucide-react'
 import Link from 'next/link'
@@ -6,8 +7,16 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Button } from '@/components/ui/button'
 import { Avatar } from '@/components/ui/avatar'
 import ToggleButton from '@/components/globals/toggle-button'
+import { useClerk } from '@clerk/nextjs'
+import {UserResource} from "@clerk/types"
+import { Profile, User } from '@prisma/client';
 
-const DesktopNavBar = () => {
+interface Props {
+    user:Partial<Profile> | null | undefined 
+}
+
+const DesktopNavBar:React.FC<Props> = ({user}) => {
+    const {signOut} = useClerk();
   return (
      <div className='hidden md:flex h-screen w-60 flex-col border-r bg-muted/40'>
                 <div className='p-6'>
@@ -47,15 +56,15 @@ const DesktopNavBar = () => {
                 </div>
 
                 <div className='mt-auto p-4 flex flex-col gap-y-8'>
-                    <div className='flex items-center gap-4 rounded-lg bg-muted p-4'>
+                    {user && user?.email && <div className='flex items-center gap-4 rounded-lg bg-muted p-4'>
                         <Avatar />
                         <div className='flex flex-col'>
-                            <span className='text-sm font-medium'>John Doe</span>
-                            <span className='text-xs text-muted-foreground'>john@example.com</span>
+                            <span className='text-sm font-medium '>{user.email.split("@")[0]}</span>
+                            <span className='text-xs text-muted-foreground break-all '>{user.email}</span>
                         </div>
-                    </div>
-                    <Button variant={"ghost"} className='w-full justify-start mt-4'>
-                        <Link href="/logout" prefetch={false}>
+                    </div>}
+                    <Button variant={"ghost"} onClick={()=>signOut({redirectUrl:"/"})} className='w-full justify-start mt-4'>
+                        <Link href="#" prefetch={false}>
                         <LogOutIcon/>
                         Log out
                         </Link>

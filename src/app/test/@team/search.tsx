@@ -39,11 +39,12 @@ const Search = () => {
     }
     const debouncedChange = debounce(handleChange, 500)
   return (
-    <div>
+    <div className='w-full'>
         <Input
             type='text'
             placeholder='Search...'
             onChange={debouncedChange}
+            className=''
         />
     </div>
   )
