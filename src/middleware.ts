@@ -13,10 +13,6 @@ export default clerkMiddleware((auth,req)=>{
   if(isProtectedRoute(req)) {
     auth().protect()
   }
-},{
-  signInUrl:"/auth/login",
-  signUpUrl:"/auth/register",
-  
 });
 
 
