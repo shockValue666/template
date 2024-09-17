@@ -16,7 +16,7 @@ const Page = () => {
                   Submit
                 </Button>
                 <p>
-                  Don't have an account?{' '}
+                  Dont have an account?{' '}
                   <Link href="/auth/register" className='font-bold'>
                     Create one
                   </Link> 
