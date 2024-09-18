@@ -148,7 +148,7 @@ export default function Home() {
             <div>
               <Image width={3194} height={1710} src="/features/conversations.png" alt="Advertising Platform" className="rounded-xl " />
             </div>
-            <div>
+            <div className="flex flex-col items-center md:items-start">
               <h2 className="text-2xl font-bold">Your Advertising Platform</h2>
               <p className="mt-4 text-muted-foreground">
                 Run Display Ads, LinkedIn Ads, and Meta Ads. Improve ROAS with AI-Dynamic Bidder.
@@ -159,7 +159,7 @@ export default function Home() {
             </div>
 
             {/* Feature 4 */}
-            <div>
+            <div className="flex flex-col items-center md:items-start">
               <h2 className="text-2xl font-bold">Seamless Integrations</h2>
               <p className="mt-4 text-muted-foreground">
                 Integrate with leading platforms like Salesforce, Hubspot, and more to streamline your marketing operations.
@@ -176,7 +176,7 @@ export default function Home() {
             <div>
               <Image width={3194} height={1710} src="/features/main.png" alt="Advertising Platform" className="rounded-xl " />
             </div>
-            <div>
+            <div className="flex flex-col items-center md:items-start">
               <h2 className="text-2xl font-bold">Your Advertising Platform</h2>
               <p className="mt-4 text-muted-foreground">
                 Run Display Ads, LinkedIn Ads, and Meta Ads. Improve ROAS with AI-Dynamic Bidder.
@@ -187,7 +187,7 @@ export default function Home() {
             </div>
 
             {/* Feature 4 */}
-            <div>
+            <div className="flex flex-col items-center md:items-start">
               <h2 className="text-2xl font-bold">Seamless Integrations</h2>
               <p className="mt-4 text-muted-foreground">
                 Integrate with leading platforms like Salesforce, Hubspot, and more to streamline your marketing operations.
